@@ -1,14 +1,19 @@
-Window.onload = function () {
+window.onload = function() {
+    
     if (document.body.classList.contains('simple-product-tour')) {
+        tour();
+    };
 
+    function tour() {
         var tour = document.createElement('div');
-        tour.className ='tour overlay';
-        tour.innerHTML = '<div class="tour-notify" id="notify"><div class="tour-notify-actions"><button id="btnNext">next</button><button id="btnFinish" hidden>finish</button></div></div>';
+        tour.className = 'tour overlay';
+        tour.innerHTML = '<div class="tour-notify" id="notify"><p></p><div class="tour-notify-actions"><button id="btnNext" class="btn btn-next">next</button><button id="btnFinish" class="btn btn-finish" hidden>finish</button></div></div>';
         document.body.append(tour);
 
 
         var tourOverlay = document.querySelector('.overlay.tour'),
             tourList = document.querySelectorAll('.point'),
+            notify = document.getElementById('notify'),
             sortedList = [],
             i = 0,
             notifyList = [
@@ -17,11 +22,11 @@ Window.onload = function () {
                 '3. notify three'
             ];
 
-        tourList.forEach(function (item) {
-            sortedList.push({ item });
+        tourList.forEach(function(item) {
+            sortedList.push({item});
         });
 
-        sortedList.sort(function (a, b) {
+        sortedList.sort(function(a, b) {
             if (a.item.dataset.step > b.item.dataset.step) {
                 return 1;
             }
@@ -38,7 +43,7 @@ Window.onload = function () {
             if (i < sortedList.length) {
                 sortedList[i].item.classList.add('tour-point-show');
             }
-            insertNotify(notify, notifyList[i]);
+            insertNotify(notify.firstChild, notifyList[i]);
             position(notify, sortedList[i].item);
         };
 
@@ -60,13 +65,12 @@ Window.onload = function () {
         };
 
         function insertNotify(el, txt) {
-            el.firstChild.data = txt;
+            el.textContent = txt;
         };
 
         function next() {
 
             i++;
-            console.log(i)
             if (i === sortedList.length) {
                 sortedList[i - 1].item.classList.remove('tour-point-show');
                 btnNext.innerHTML = "next";
@@ -88,7 +92,7 @@ Window.onload = function () {
 
         btnNext.onclick = next;
 
-        btnFinish.onclick = function () {
+        btnFinish.onclick = function() {
             next();
             tourOverlay.style.display = "none";
         };

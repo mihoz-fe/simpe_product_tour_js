@@ -1,0 +1,89 @@
+@import 'variables';
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: $transition;
+}
+
+.point {
+    position: relative;
+    &.tour-point-show {
+        box-sizing: content-box;
+        position: relative;
+        z-index: 150;
+        transition: $transition;
+        &:before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            height: 100%;
+            width: 100%;
+            border: 2px solid #FFF;
+
+        }
+    }
+}
+
+.tour-notify {
+    color: $txtColor;
+    background-color: #fff;
+    border: 2px solid #f3f3f3;
+    position: absolute;
+    padding: 1rem 0.8rem;
+    max-width: 250px;
+    transition: $transition;
+    z-index: 100;
+    &::before {
+        content: '';
+        position: absolute;
+        height: 10px;
+        width: 10px;
+        border: 10px solid transparent;
+        border-right-color: #f3f3f3;
+        top: 7px;
+        left: -20px;
+        box-sizing: border-box;
+    }
+    .tour-notify-actions {
+        display: flex;
+        justify-content: space-between;
+        min-width: 180px;
+        .btn {
+            &:focus,
+            &:hover,
+            &:active {
+                outline: 0 none;
+            }
+            padding: 0.5rem 1rem;
+            border: 1px solid;
+            border-radius: 3px;
+            transition: $transition;
+            &.btn-next {
+                border-color: #6aca7a;
+                background-color: rgba(177, 245, 188, 0.178);
+                color: #36a749;
+                &:hover {
+                    background-color: #6aca7a;
+                    color: #FFF;
+                   
+                }
+            }
+            &.btn-finish {
+                border-color: #ca6a6a;
+                background-color: rgba(245, 177, 177, 0.178);
+                color: #a73636;
+                &:hover {
+                    background-color: #ca6a6a;
+                    color: #FFF;
+                   
+                }
+            }
+        } 
+    } 
+}
