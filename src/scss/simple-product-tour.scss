@@ -45,10 +45,18 @@
         height: 10px;
         width: 10px;
         border: 10px solid transparent;
-        border-right-color: #f3f3f3;
         top: 7px;
-        left: -20px;
         box-sizing: border-box;
+    }
+    &.arrow-left::before {
+        border-right-color: #f3f3f3;
+        left: -20px;
+    }
+    &.arrow-right::before {
+        border-right-color: transparent;
+        border-left-color: #f3f3f3;
+        left: initial;
+        right: -22px
     }
     .tour-notify-actions {
         display: flex;

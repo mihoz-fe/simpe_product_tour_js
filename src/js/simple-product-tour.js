@@ -17,9 +17,9 @@ window.onload = function() {
             sortedList = [],
             i = 0,
             notifyList = [
-                '1. notify one',
-                '2. notify two',
-                '3. notify three'
+                '1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                '2. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                '3. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
             ];
 
         tourList.forEach(function(item) {
@@ -60,7 +60,25 @@ window.onload = function() {
         function position(el, anch) {
             var anchCoord = getCoordinates(anch),
                 anchSizes = '';
-            el.style.left = anchCoord.left + anchCoord.anchWidth + 10 + "px";
+            if((document.body.scrollWidth - (anchCoord.left + anchCoord.anchWidth)) > 250 ) {
+                el.style.left = anchCoord.left + anchCoord.anchWidth + 10 + "px";
+                el.style.right = 'initial';
+                if(el.classList.contains('arrow-right')) {
+                    el.classList.remove('arrow-right');
+                    el.classList.add('arrow-left');
+                } else {
+                    el.classList.add('arrow-left');
+                };
+            } else {
+                el.style.right = document.body.scrollWidth - anchCoord.left + 27 + 'px';
+                el.style.left = 'initial';
+                if (el.classList.contains('arrow-left')) { 
+                    el.classList.remove('arrow-left');
+                    el.classList.add('arrow-right');
+                } else {
+                    el.classList.add('arrow-right');
+                };
+            }
             el.style.top = anchCoord.top + anchCoord.anchHeight / 2 - 15 + "px";
         };
 
